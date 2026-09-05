@@ -30,8 +30,9 @@ Load older messages
 
 Review
 6. Click **"Generate Message"** → a personalised message (or deterministic template) is shown.
-7. Press **"Recover Now"** → the UI simulates sending the message, retrying the payment, and finally marks the payment as *SUCCESS*.
-8. Return to the Dashboard – the **Recovered Revenue** and **Recovery Rate** have increased.
+7. Press **"Recover Now"** → the UI simulates sending the recovery message.
+8. Simulate Successful Retry → the payment is marked as *SUCCESS*.
+9. Return to Dashboard – the **Recovered Revenue** and **Recovery Rate** have increased.
 ---
 ## 🛡️ Safety & Guardrails
 - Message generation forbids requesting OTP, CVV, UPI PIN, passwords or any sensitive credential.
@@ -68,7 +69,7 @@ npm run build   # runs both backend and frontend builds
 ## ☁️ Render Deployment Architecture
 - **Frontend** – Render *Static Site* service, built with `npm run build:frontend` and served from `frontend/dist`.
 - **Backend** – Render *Web Service* (`node dist/index.js`), exposing `/api/*` endpoints.
-- **Database** – SQLite file bundled with the backend container (persistent volume on Render).
+- **Database** – SQLite file used for demo storage; on Render deployments the file lives inside the container and may be reset when the service is redeployed.
 ---
 ## ⚠️ Limitations / Demo Notes
 - All recovery actions are **simulated** – no real payment gateway or WhatsApp/SMS integration.
