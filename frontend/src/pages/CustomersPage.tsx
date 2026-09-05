@@ -10,7 +10,6 @@ interface CustomersPageProps {
 export const CustomersPage: React.FC<CustomersPageProps> = ({ onSelectPayment }) => {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [loadingCustomer, setLoadingCustomer] = useState<boolean>(false);
   const [search, setSearch] = useState<string>('');
   const [segmentFilter, setSegmentFilter] = useState<string>('ALL');
   const [selectedCustomer, setSelectedCustomer] = useState<Customer | null>(null);
@@ -32,14 +31,11 @@ export const CustomersPage: React.FC<CustomersPageProps> = ({ onSelectPayment })
   }, [fetchCustomers]);
 
   const handleOpenCustomer = async (customerId: string) => {
-    setLoadingCustomer(true);
     try {
       const cust = await api.getCustomerById(customerId);
       setSelectedCustomer(cust);
     } catch (err) {
       console.error('Failed to load customer profile:', err);
-    } finally {
-      setLoadingCustomer(false);
     }
   };
 

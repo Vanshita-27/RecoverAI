@@ -28,9 +28,9 @@ app.use('*', (_req, res) => {
   res.status(404).json({ error: 'Endpoint not found' });
 });
 
-const server = app.listen(config.port, () => {
-  console.log(`[RecoverAI] Backend server running on http://localhost:${config.port}`);
-  console.log(`[RecoverAI] Health check available at http://localhost:${config.port}/api/health`);
+const server = app.listen(config.port, '0.0.0.0', () => {
+  console.log(`[RecoverAI] Backend server running on http://0.0.0.0:${config.port}`);
+  console.log(`[RecoverAI] Health check available at http://0.0.0.0:${config.port}/api/health`);
 });
 
 export default app;
